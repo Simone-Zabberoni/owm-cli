@@ -1,0 +1,13 @@
+*.pyc
+*~
+build/*
+bin/*
+dist/*
+.settings/*
+.project
+.pydevproject
+.idea/*
+.tox/*
+.coverage
+tests/integration/.tox/*
+.cache
