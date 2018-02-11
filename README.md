@@ -92,5 +92,70 @@ ID: 6540121 - Ravenna (IT) - lon=12.19873 lat=44.416969
 ```
 
 
+# Docker support
+
+Build from Dockerfile:
+
+```shell
+~/Dev/owm-cli$ cd scripts/
+~/Dev/owm-cli/scripts$ ./build_docker.sh 
+Sending build context to Docker daemon  123.9kB
+Step 1/7 : FROM alpine:3.7
+ ---> e21c333399e0
+Step 2/7 : MAINTAINER Simone Zabberoni <simone.zabberoni@gmail.com>
+ ---> Using cache
+ ---> ddd9085f8dc4
+Step 3/7 : RUN apk add --update python3 py-pip
+ ---> Using cache
+ ---> 8f7064f6358e
+Step 4/7 : RUN pip install pyowm
+ ---> Using cache
+ ---> d93e1402fbdd
+Step 5/7 : ADD . /pyowm
+ ---> Using cache
+ ---> 5e139ad1a9d4
+Step 6/7 : WORKDIR /pyowm
+ ---> Using cache
+ ---> 51f4449e48e4
+Step 7/7 : ENTRYPOINT ["/pyowm/owm-cli.py"]
+ ---> Using cache
+ ---> 61f9b03e87ef
+Successfully built 61f9b03e87ef
+Successfully tagged owmcli:latest
+```
+
+
+Docker run with OWM_KEY environmental variable:
+
+
+```shell
+$ docker run -e OWM_KEY pyowm-cli weather at_place Roma
+Location: Rome
+Coordinates: lon=12.48 lat=41.89
+Observation time: 2018-02-11 22:55:00+00
+Weather status: clear sky
+Temperature: 3.33C
+Humidity: 69%
+Cloud coverage: 0%
+```
+
+
+Aliasing:
+
+```shell
+$ alias pyowm-cli="docker run -e OWM_KEY pyowm-cli"
+
+$ pyowm-cli weather at_place Helsinki
+Location: Helsinki
+Coordinates: lon=24.94 lat=60.17
+Observation time: 2018-02-11 22:50:00+00
+Weather status: light snow
+Temperature: -4.0C
+Humidity: 92%
+Cloud coverage: 75%
+```
+
+
+
 
 
