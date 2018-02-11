@@ -8,7 +8,7 @@ A Command-Line Interface to the OpenWeatherMap API
 Provide your API key via commandline:
 
 ```shell
-$ ./owm-cli.py -k "your_api_key" [commands]...
+$ ./owm-cli.py --key "your_api_key" [commands]...
 ```
 
 
